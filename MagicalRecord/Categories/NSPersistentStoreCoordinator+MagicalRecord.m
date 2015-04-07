@@ -65,6 +65,15 @@ NSString * const kMagicalRecordPSCDidCompleteiCloudSetupNotification = @"kMagica
 - (NSPersistentStore *) MR_addSqliteStoreNamed:(id)storeFileName withOptions:(__autoreleasing NSDictionary *)options
 {
     NSURL *url = [storeFileName isKindOfClass:[NSURL class]] ? storeFileName : [NSPersistentStore MR_urlForStoreName:storeFileName];
+    
+    // Creation - This is to pass the complete path (URL) of the store as a string
+    if ([storeFileName isKindOfClass:[NSString class]]) {
+        NSURL *tempUrl = [NSURL URLWithString:storeFileName];
+        if (tempUrl && [tempUrl isFileURL]) {
+            url = tempUrl;
+        }
+    }
+    
     NSError *error = nil;
     
     [self MR_createPathToStoreFileIfNeccessary:url];
