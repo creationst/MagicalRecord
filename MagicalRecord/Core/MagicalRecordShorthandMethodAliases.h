@@ -1,5 +1,5 @@
-#import <MagicalRecord/MagicalRecordDeprecationMacros.h>
-#import <MagicalRecord/NSManagedObjectContext+MagicalSaves.h>
+#import <MagicalRecordDeprecationMacros.h>
+#import <NSManagedObjectContext+MagicalSaves.h>
 
 
 @interface NSManagedObject (MagicalAggregationShortHand)
