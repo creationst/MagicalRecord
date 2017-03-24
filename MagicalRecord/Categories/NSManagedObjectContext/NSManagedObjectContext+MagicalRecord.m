@@ -64,8 +64,10 @@ static id MagicalRecordUbiquitySetupNotificationObserver;
 + (NSManagedObjectContext *) MR_contextWithParent:(NSManagedObjectContext *)parentContext
 {
     NSManagedObjectContext *context = [self MR_newPrivateQueueContext];
-    [context setParentContext:parentContext];
-    [context MR_obtainPermanentIDsBeforeSaving];
+    if (parentContext) {
+        [context setParentContext:parentContext];
+        [context MR_obtainPermanentIDsBeforeSaving];
+    }
     return context;
 }
 
